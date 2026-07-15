@@ -108,38 +108,12 @@
             </div>
         </div>
         <div class="row mb15">
-            <div class="col-lg-6">
-                <div class="form-row">
-                    <label for="">Độ rượu</label>
-                    <input type="text" name="percent" value="{{ old('percent', $product->percent ?? null) }}"
-                        class="form-control ">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="form-row">
-                    <label for="">Thể tích</label>
-                    <input type="text" name="ml" value="{{ old('ml', $product->ml ?? null) }}"
-                        class="form-control ">
-                </div>
-            </div>
-        </div>
-        <div class="row mb15">
             <div class="col-lg-12">
                 <div class="form-row">
                     <label for="">{{ __('messages.product.price') }}</label>
                     <input type="text" name="price"
                         value="{{ old('price', isset($product) ? number_format($product->price, 0, ',', '.') : '') }}"
                         class="form-control int">
-                </div>
-            </div>
-        </div>
-        <div class="row mb15">
-            <div class="col-lg-12">
-                <div class="form-row">
-                    <label for="">Giá combo 5 chai</label>
-                    <input type="text" name="combo_price"
-                        value="{{ old('combo_price', isset($product) ? number_format($product->combo_price, 0, ',', '.') : '') }}"
-                        class="form-control int" placeholder="Giá khi mua từ 5 chai trở lên">
                 </div>
             </div>
         </div>
