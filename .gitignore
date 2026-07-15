@@ -1,0 +1,17 @@
+/vendor
+/node_modules
+.env
+/public/uploads
+/public/upload
+/public/image-cache
+public.zip
+work/
+scratch/
+scratch_check_tables.php
+.phpunit.result.cache
+.env.backup
+.env.production
+package-lock.json
+composer.lock
+npm-debug.log
+yarn-error.log
