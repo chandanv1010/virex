@@ -15,3 +15,4 @@ package-lock.json
 composer.lock
 npm-debug.log
 yarn-error.log
+/public/userfiles
