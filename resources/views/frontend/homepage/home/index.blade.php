@@ -317,21 +317,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="swiper-container product-swiper">
                         <div class="swiper-wrapper">
                             @foreach($productChildren as $idx => $child)
-                                @php
-                                    $footerClass = '';
-                                    $canonical = $child->languages->canonical ?? '';
-                                    if (str_contains($canonical, 'inox')) {
-                                        $footerClass = 'bg-green';
-                                    } elseif (str_contains($canonical, 'pccc') || str_contains($canonical, 'carbon')) {
-                                        $footerClass = 'bg-red';
-                                    }
-                                @endphp
                                 <div class="swiper-slide product-slide-item">
                                     <a href="{{ write_url($child->languages->canonical) }}" class="product-card">
                                         <div class="card-image">
                                             <img src="{{ $child->image }}" alt="{{ $child->languages->name }}">
                                         </div>
-                                        <div class="card-footer {{ $footerClass }}">
+                                        <div class="card-footer" style="background-color: {{ $child->background ?? '#006D3A' }} !important;">
                                             <span class="card-title">{{ $child->languages->name }}</span>
                                         </div>
                                     </a>

@@ -26,7 +26,8 @@ class ProductCatalogue extends Model
         'user_id',
         'attribute',
         'check',
-        'short_name'
+        'short_name',
+        'background'
     ];
 
     protected $table = 'product_catalogues';

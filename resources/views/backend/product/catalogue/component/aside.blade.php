@@ -53,4 +53,25 @@
         </div>
     </div>
 </div>
+<div class="ibox w">
+    <div class="ibox-title">
+        <h5>Màu nền (Background)</h5>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-row">
+                    <input 
+                        type="color" 
+                        name="background" 
+                        value="{{ old('background', ($productCatalogue->background) ?? '#006D3A' ) }}"
+                        class="form-control"
+                        style="height: 40px; padding: 2px;"
+                    >
+                    <small class="text-muted mt5 d-block">Chọn màu nền hiển thị cho nhóm sản phẩm.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @include('backend.dashboard.component.publish', ['model' => ($productCatalogue) ?? null, 'hideImage' => true])

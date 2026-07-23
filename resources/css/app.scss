@@ -6211,3 +6211,109 @@ img {
         height: auto !important;
     }
 }
+
+// ==========================================
+// CUSTOM BEAUTIFUL SWIPER NAV BUTTONS
+// ==========================================
+.panel-slide {
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 50px !important;
+        height: 50px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-radius: 50% !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        top: 50% !important;
+        margin-top: 0 !important;
+        transform: translateY(-50%) !important;
+        border: 1px solid rgba(0, 0, 0, 0.05) !important;
+        cursor: pointer !important;
+        z-index: 100 !important;
+        background-image: none !important; /* HIDE DEFAULT BLUE ARROW BACKGROUND IMAGE */
+        color: #006D3A !important; /* BASE BUTTON COLOR */
+
+        /* HIDE ANY DYNAMICALLY INJECTED DOM CHILD NODES (SVGs, i TAGS, ETC.) */
+        * {
+            display: none !important;
+        }
+        svg, img, i, span {
+            display: none !important;
+        }
+
+        &::after {
+            display: none !important;
+            content: "" !important;
+        }
+
+        &::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 50% !important;
+            width: 12px !important;
+            height: 12px !important;
+            transform: translate(-50%, -50%) rotate(45deg) !important;
+            transition: border-color 0.3s ease !important;
+            display: block !important;
+            border-width: 3px !important;
+            border-style: solid !important;
+            border-color: currentColor !important; /* DYNAMICALLY INHERITS BUTTON TEXT COLOR */
+            box-sizing: border-box !important;
+        }
+
+        &:hover {
+            background: #006D3A !important;
+            color: #fff !important; /* TURNS BORDERS WHITE DYNAMICALLY */
+            transform: translateY(-50%) scale(1.1) !important;
+            box-shadow: 0 6px 20px rgba(0, 109, 58, 0.3) !important;
+        }
+
+        &:active {
+            transform: translateY(-50%) scale(0.95) !important;
+        }
+
+        @media (max-width: 767px) {
+            width: 38px !important;
+            height: 38px !important;
+            
+            &::before {
+                width: 9px !important;
+                height: 9px !important;
+                border-width: 2px !important;
+            }
+        }
+    }
+
+    .swiper-button-prev {
+        left: 20px !important;
+        right: auto !important;
+
+        &::before {
+            left: 54% !important; /* OPTIC CENTER OFFSET */
+            border-top-color: transparent !important;
+            border-right-color: transparent !important;
+        }
+        
+        @media (max-width: 767px) {
+            left: 10px !important;
+        }
+    }
+
+    .swiper-button-next {
+        right: 20px !important;
+        left: auto !important;
+
+        &::before {
+            left: 46% !important; /* OPTIC CENTER OFFSET */
+            border-left-color: transparent !important;
+            border-bottom-color: transparent !important;
+        }
+
+        @media (max-width: 767px) {
+            right: 10px !important;
+        }
+    }
+}

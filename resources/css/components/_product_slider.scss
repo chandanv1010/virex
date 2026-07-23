@@ -176,17 +176,17 @@
         }
 
         .product-slide-item {
-            height: 420px;
+            height: auto !important;
 
             @media (max-width: 767px) {
-                height: 380px;
+                height: auto !important;
             }
         }
 
         .product-card {
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: auto;
             background: #fff;
             border-radius: 4px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
@@ -208,7 +208,8 @@
             }
 
             .card-image {
-                flex: 1;
+                width: 100%;
+                aspect-ratio: 301 / 425;
                 position: relative;
                 background-color: #fff;
                 padding: 0; // No padding for full bleed cover layout

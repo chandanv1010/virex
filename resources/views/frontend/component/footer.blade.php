@@ -20,8 +20,8 @@
             <div class="swiper-wrapper" style="display: flex; align-items: center;">
                 @foreach($partnerItems as $item)
                     <div class="swiper-slide partner-slide-item">
-                        <div class="partner-logo-card" style="background: #fff; padding: 10px 15px; border-radius: 8px; border: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: center; height: 60px !important; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: all 0.2s; width: 100% !important; box-sizing: border-box !important;">
-                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] ?? 'Partner' }}" style="height: 40px !important; max-height: 40px !important; width: auto !important; object-fit: contain !important; display: block;">
+                        <div class="partner-logo-card" style="background: #fff; padding: 15px 20px; border-radius: 8px; border: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: center; height: 150px !important; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: all 0.2s; width: 100% !important; box-sizing: border-box !important;">
+                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] ?? 'Partner' }}" style="height: 120px !important; max-height: 120px !important; width: auto !important; max-width: 100% !important; object-fit: contain !important; display: block;">
                         </div>
                     </div>
                 @endforeach
