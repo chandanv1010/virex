@@ -50,7 +50,7 @@
                                     @endphp
                                     <li class="uk-margin-bottom">
                                         <div class="subcategory-card">
-                                            <a href="{{ $canonical }}" class="subcategory-image-link img-scaledown img-zoomin">
+                                            <a href="{{ $canonical }}" class="subcategory-image-link img-scaledown img-zoomin @if(($subCat->image_fit ?? 'cover') === 'contain') image-contain @endif">
                                                 <img src="{{ $imagePath }}" alt="{{ $name }}">
                                             </a>
                                             <div class="subcategory-info uk-text-center">

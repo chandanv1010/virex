@@ -27,7 +27,8 @@ class ProductCatalogue extends Model
         'attribute',
         'check',
         'short_name',
-        'background'
+        'background',
+        'image_fit'
     ];
 
     protected $table = 'product_catalogues';

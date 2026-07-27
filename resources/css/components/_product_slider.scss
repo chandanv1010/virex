@@ -224,6 +224,20 @@
                     object-fit: cover; // Cover container completely
                     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
                 }
+
+                &.image-contain {
+                    padding: 20px;
+                    box-sizing: border-box;
+                    background-color: #ffffff;
+
+                    img {
+                        width: calc(100% - 40px);
+                        height: calc(100% - 40px);
+                        top: 20px;
+                        left: 20px;
+                        object-fit: contain;
+                    }
+                }
             }
 
             .card-footer {

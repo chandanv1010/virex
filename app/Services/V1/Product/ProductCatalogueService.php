@@ -289,7 +289,8 @@ class ProductCatalogueService extends BaseService
             'album',
             'icon',
             'short_name',
-            'background'
+            'background',
+            'image_fit'
         ];
     }
     private function payloadLanguage(){

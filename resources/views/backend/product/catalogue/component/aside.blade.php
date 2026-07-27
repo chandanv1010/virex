@@ -74,4 +74,22 @@
         </div>
     </div>
 </div>
+<div class="ibox w">
+    <div class="ibox-title">
+        <h5>Kiểu hiển thị ảnh</h5>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-row">
+                    <select name="image_fit" class="form-control">
+                        <option value="cover" {{ old('image_fit', ($productCatalogue->image_fit) ?? 'cover') == 'cover' ? 'selected' : '' }}>Cover (Phóng to vừa khung)</option>
+                        <option value="contain" {{ old('image_fit', ($productCatalogue->image_fit) ?? 'cover') == 'contain' ? 'selected' : '' }}>Contain (Thu nhỏ gọn trong khung)</option>
+                    </select>
+                    <small class="text-muted mt5 d-block">Chọn kiểu hiển thị ảnh trong khung.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @include('backend.dashboard.component.publish', ['model' => ($productCatalogue) ?? null, 'hideImage' => true])

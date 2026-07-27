@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             @foreach($productChildren as $idx => $child)
                                 <div class="swiper-slide product-slide-item">
                                     <a href="{{ write_url($child->languages->canonical) }}" class="product-card">
-                                        <div class="card-image">
+                                        <div class="card-image @if(($child->image_fit ?? 'cover') === 'contain') image-contain @endif">
                                             <img src="{{ $child->image }}" alt="{{ $child->languages->name }}">
                                         </div>
                                         <div class="card-footer" style="background-color: {{ $child->background ?? '#006D3A' }} !important;">
