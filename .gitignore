@@ -1,9 +1,6 @@
 /vendor
 /node_modules
 .env
-/public/uploads
-/public/upload
-/public/image-cache
 public.zip
 work/
 scratch/
@@ -15,4 +12,3 @@ package-lock.json
 composer.lock
 npm-debug.log
 yarn-error.log
-/public/userfiles
