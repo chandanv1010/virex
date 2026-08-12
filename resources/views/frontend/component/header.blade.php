@@ -260,6 +260,7 @@
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 .main-menu {
     display: flex;
@@ -268,19 +269,125 @@
     margin: 0;
     padding: 0;
 }
+.main-menu > li {
+    position: relative;
+    padding: 10px 0;
+}
 .main-menu > li > a {
-    color: #666666 !important;
+    color: #475569 !important;
     font-weight: 600;
     text-decoration: none;
     font-size: 14.5px;
-    padding: 10px 5px;
+    padding: 8px 12px;
     text-transform: uppercase;
     transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 .main-menu > li > a:hover,
 .main-menu > li > a.active {
     color: #154284 !important;
 }
+
+/* Multi-Level Dropdown Styling */
+.main-menu li.children {
+    position: relative;
+}
+
+.main-menu > li.children > a::after {
+    content: '\f107';
+    font-family: 'FontAwesome';
+    font-size: 12px;
+    margin-left: 4px;
+    color: #64748b;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.main-menu > li.children:hover > a::after {
+    color: #154284;
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu Container (Level 2 & Level 3) */
+.main-menu .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 230px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e2e8f0;
+    padding: 6px 0;
+    z-index: 99999;
+    animation: dropdownFadeIn 0.2s ease-out;
+}
+
+.main-menu li:hover > .dropdown-menu {
+    display: block;
+}
+
+.main-menu .dropdown-menu ul {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.main-menu .dropdown-menu li {
+    position: relative;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    width: 100%;
+}
+
+.main-menu .dropdown-menu li a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 18px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    background: transparent !important;
+}
+
+.main-menu .dropdown-menu li:hover > a {
+    background-color: #f1f5f9 !important;
+    color: #154284 !important;
+    padding-left: 22px !important;
+}
+
+/* Level 2 Sub-item with Children (e.g., Các loại Van) */
+.main-menu .dropdown-menu li.children > a::after {
+    content: '\f105';
+    font-family: 'FontAwesome';
+    font-size: 13px;
+    color: #94a3b8;
+    margin-left: 15px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.main-menu .dropdown-menu li.children:hover > a::after {
+    color: #154284;
+    transform: translateX(3px);
+}
+
+/* Level 3 Sub-menu (Pops out to the Right) */
+.main-menu .dropdown-menu li.children > .dropdown-menu {
+    top: -6px;
+    left: 100%;
+    margin-left: 4px;
+    min-width: 220px;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+}
+
 .btn-download-doc {
     background: #154284;
     color: #fff;
@@ -331,6 +438,17 @@
     }
     .mobile-menu-list .uk-parent > a::after {
         display: none !important;
+    }
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
