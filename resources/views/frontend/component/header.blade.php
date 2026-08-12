@@ -310,22 +310,22 @@
 }
 
 /* Dropdown Menu Container (Level 2 & Level 3) */
-.main-menu .dropdown-menu {
+.main-menu > li.children > .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    min-width: 230px;
+    min-width: 270px;
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
     border: 1px solid #e2e8f0;
-    padding: 6px 0;
+    padding: 8px 0;
     z-index: 99999;
     animation: dropdownFadeIn 0.2s ease-out;
 }
 
-.main-menu li:hover > .dropdown-menu {
+.main-menu > li.children:hover > .dropdown-menu {
     display: block;
 }
 
@@ -347,7 +347,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    padding: 10px 18px !important;
+    padding: 11px 20px !important;
     font-size: 14px !important;
     font-weight: 500 !important;
     color: #334155 !important;
@@ -361,7 +361,7 @@
 .main-menu .dropdown-menu li:hover > a {
     background-color: #f1f5f9 !important;
     color: #154284 !important;
-    padding-left: 22px !important;
+    padding-left: 24px !important;
 }
 
 /* Level 2 Sub-item with Children (e.g., Các loại Van) */
@@ -370,22 +370,35 @@
     font-family: 'FontAwesome';
     font-size: 13px;
     color: #94a3b8;
-    margin-left: 15px;
+    margin-left: 20px;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .main-menu .dropdown-menu li.children:hover > a::after {
     color: #154284;
-    transform: translateX(3px);
+    transform: translateX(4px);
 }
 
-/* Level 3 Sub-menu (Pops out to the Right) */
+/* Level 3 Sub-menu (Pops out to the Right of Level 2 item) */
 .main-menu .dropdown-menu li.children > .dropdown-menu {
-    top: -6px;
+    display: none !important;
+    position: absolute;
+    top: -8px;
     left: 100%;
-    margin-left: 4px;
-    min-width: 220px;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+    margin-left: 6px;
+    min-width: 250px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px -5px rgba(15, 23, 42, 0.18);
+    border: 1px solid #e2e8f0;
+    padding: 8px 0;
+    z-index: 100000;
+}
+
+/* ONLY show Level 3 when hovering directly over the Level 2 li.children item! */
+.main-menu .dropdown-menu li.children:hover > .dropdown-menu {
+    display: block !important;
+    animation: dropdownFadeInRight 0.2s ease-out;
 }
 
 .btn-download-doc {
