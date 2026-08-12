@@ -69,7 +69,7 @@ class CategoryAndMenuSeeder extends Seeder
             $ongNhuaCat = DB::table('product_catalogue_language')->where('canonical', 'ong-nhua')->first();
             if ($ongNhuaCat) {
                 $ongNhuaId = $ongNhuaCat->product_catalogue_id;
-                DB::table('product_catalogues')->where('id', $ongNhuaId)->update(['parent_id' => 1, 'level' => 2, 'order' => 3, 'publish' => 2]);
+                DB::table('product_catalogues')->where('id', $ongNhuaId)->update(['parent_id' => 1, 'level' => 2, 'order' => 3, 'publish' => 2, 'image' => '/userfiles/image/slide/anh-ong-nhua.png']);
                 DB::table('product_catalogue_language')->where('product_catalogue_id', $ongNhuaId)->update(['name' => 'Ống nhựa', 'canonical' => 'ong-nhua']);
             } else {
                 $ongNhuaId = DB::table('product_catalogues')->insertGetId([
@@ -77,6 +77,7 @@ class CategoryAndMenuSeeder extends Seeder
                     'level' => 2,
                     'order' => 3,
                     'publish' => 2,
+                    'image' => '/userfiles/image/slide/anh-ong-nhua.png',
                     'user_id' => 1,
                     'created_at' => now(),
                     'updated_at' => now(),
