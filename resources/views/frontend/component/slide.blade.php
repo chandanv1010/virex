@@ -1,5 +1,8 @@
 @php
     $slideKeyword = App\Enums\SlideEnum::MAIN;
+    $rawPhone = $system['contact_hotline'] ?? ($system['contact_phone'] ?? '0963892881');
+    $zaloPhone = preg_replace('/[^0-9]/', '', $rawPhone);
+    $zaloUrl = !empty($zaloPhone) ? 'https://zalo.me/' . $zaloPhone : ($system['social_zalo'] ?? 'https://zalo.me/');
 @endphp
 
 @if(!empty($slides[$slideKeyword]['item']))
@@ -12,10 +15,10 @@
                 @foreach($slides[$slideKeyword]['item'] as $key => $val)
                     <div class="swiper-slide">
                         <div class="slide-inner uk-flex uk-flex-middle uk-flex-between">
-                            {{-- Hình ảnh --}}
-                            <div class="slide-image img-cover">
+                            {{-- Hình ảnh slide nhấp vào mở Zalo --}}
+                            <a href="{{ $zaloUrl }}" target="_blank" class="slide-image img-cover" title="Liên hệ Zalo {{ $rawPhone }}">
                                 <img src="{{ $val['image'] }}" alt="{{ $val['name'] }}" />
-                            </div>
+                            </a>
 
                             {{-- Nội dung text --}}
                             <div class="slide-content wow fadeInLeft" data-wow-delay="0.3s">
@@ -27,9 +30,7 @@
                                     </p>
                                 @endif
 
-                                @if(!empty($val['canonical']))
-                                    <a href="{{ $val['canonical'] }}" class="slide-btn">Xem thêm</a>
-                                @endif
+                                <a href="{{ $zaloUrl }}" target="_blank" class="slide-btn">LIÊN HỆ NGAY</a>
                             </div>
                         </div>
                     </div>

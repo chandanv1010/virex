@@ -80,6 +80,36 @@ class ProductCatalogueController extends FrontendController
                 return $cate->products->count();
             });
             $subCat->setAttribute('total_product_count', $totalProducts);
+
+            if ($productCatalogue->level >= 2 || $productCatalogue->parent_id > 0) {
+                $subCatProducts = \App\Models\Product::select([
+                    'products.id',
+                    'products.product_catalogue_id',
+                    'products.image',
+                    'products.price',
+                    'products.publish',
+                    'tb2.name',
+                    'tb2.canonical'
+                ])
+                ->join('product_language as tb2', 'tb2.product_id', '=', 'products.id')
+                ->join('product_catalogue_product as tb3', 'tb3.product_id', '=', 'products.id')
+                ->where('tb2.language_id', '=', $this->language)
+                ->where('products.publish', '=', 2)
+                ->whereIn('tb3.product_catalogue_id', function($query) use ($subCat) {
+                    $query->select('id')
+                        ->from('product_catalogues')
+                        ->where('lft', '>=', $subCat->lft)
+                        ->where('rgt', '<=', $subCat->rgt);
+                })
+                ->groupBy('products.id', 'products.product_catalogue_id', 'products.image', 'products.price', 'products.publish', 'tb2.name', 'tb2.canonical')
+                ->orderBy('products.order', 'desc')
+                ->orderBy('products.id', 'desc')
+                ->limit(8)
+                ->get();
+
+                $subCatProducts = $this->combineProductValues($subCatProducts);
+                $subCat->setAttribute('products', $subCatProducts);
+            }
         }
         $subCategories = $subCategories->sortBy('order')->values();
 

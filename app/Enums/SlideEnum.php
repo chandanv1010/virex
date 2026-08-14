@@ -9,6 +9,7 @@ enum SlideEnum: string {
     const PARTNER = 'partner';
     const WHYCHOOSE = 'why-choose-us';
     const MOBILE = 'mobile-slide';
+    const PROJECT = 'project';
 
     public static function toArray(){
         return [
@@ -17,6 +18,7 @@ enum SlideEnum: string {
             self::TECHSTAFF => 'teaching-staff',
             self::PARTNER => 'partner',
             self::WHYCHOOSE => 'why-choose-us',
+            self::PROJECT => 'project',
         ];
     }
 

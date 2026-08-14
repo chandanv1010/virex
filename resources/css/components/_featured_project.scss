@@ -1,14 +1,21 @@
-// ==========================================
-// VIREX FEATURED PROJECTS (DỰ ÁN TIÊU BIỂU)
-// ==========================================
+/* Fix UIkit Lightbox Modal z-index so sticky header never overlaps zoomed image */
+.uk-lightbox,
+.uk-modal,
+.uk-modal-page {
+    z-index: 10000000 !important;
+}
+.uk-lightbox-content,
+.uk-modal-dialog {
+    z-index: 10000001 !important;
+}
 
 .panel-featured-projects {
-    padding: 80px 0 0 0;
+    padding: 70px 0 0 0;
     background-color: #fff;
 
     .project-header {
         text-align: center;
-        margin-bottom: 45px;
+        margin-bottom: 35px;
 
         .title {
             font-family: 'Manrope', sans-serif;
@@ -21,30 +28,79 @@
             text-transform: uppercase;
 
             @media (max-width: 767px) {
-                font-size: 28px;
+                font-size: 26px;
             }
         }
     }
 
-    .project-grid {
-        display: flex;
-        flex-wrap: wrap;
+    .project-slider-wrapper {
+        position: relative;
         width: 100%;
-        margin: 0;
-        padding: 0;
-    }
 
-    .project-column {
-        width: 25%;
-        margin: 0;
-        padding: 0;
-
-        @media (max-width: 959px) {
-            width: 50%;
+        .project-swiper {
+            width: 100%;
+            overflow: hidden;
         }
 
-        @media (max-width: 479px) {
-            width: 50%;
+        .project-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(0, 109, 58, 0.9);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 90;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            outline: none;
+            padding: 0;
+
+            .nav-icon {
+                width: 26px;
+                height: 26px;
+                transition: transform 0.2s ease;
+            }
+
+            &:hover {
+                background: #006D3A;
+                transform: translateY(-50%) scale(1.15);
+                box-shadow: 0 6px 24px rgba(0, 109, 58, 0.5);
+
+                &.project-prev .nav-icon {
+                    transform: translateX(-2px);
+                }
+                &.project-next .nav-icon {
+                    transform: translateX(2px);
+                }
+            }
+
+            &.project-prev {
+                left: 15px;
+            }
+
+            &.project-next {
+                right: 15px;
+            }
+
+            @media (max-width: 767px) {
+                width: 38px;
+                height: 38px;
+
+                .nav-icon {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                &.project-prev { left: 8px; }
+                &.project-next { right: 8px; }
+            }
         }
     }
 
@@ -52,20 +108,26 @@
         display: block;
         position: relative;
         width: 100%;
-        height: 800px; // 800px on PC
+        height: 600px;
         overflow: hidden;
         text-decoration: none;
+        border-right: 4px solid #ffffff;
+        box-sizing: border-box;
 
-        @media (max-width: 959px) {
+        @media (max-width: 1400px) {
             height: 500px;
         }
 
+        @media (max-width: 959px) {
+            height: 400px;
+        }
+
         @media (max-width: 767px) {
-            height: 350px;
+            height: 330px;
         }
 
         @media (max-width: 479px) {
-            height: 200px;
+            height: 260px;
         }
 
         img {
@@ -75,43 +137,9 @@
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .project-title-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 50px 20px 25px 20px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
-            text-align: center;
-            transition: background 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-
-            @media (max-width: 479px) {
-                padding: 20px 10px 10px 10px;
-            }
-
-            .project-name {
-                font-family: 'Manrope', sans-serif;
-                font-size: 13.5px;
-                font-weight: 800;
-                color: #fff;
-                margin: 0;
-                text-transform: uppercase;
-                line-height: 1.4;
-                letter-spacing: 0.3px;
-
-                @media (max-width: 479px) {
-                    font-size: 11px !important;
-                }
-            }
-        }
-
         &:hover {
             img {
                 transform: scale(1.08);
-            }
-
-            .project-title-overlay {
-                background: linear-gradient(to top, rgba(0, 109, 58, 0.9) 0%, rgba(0, 109, 58, 0.5) 60%, rgba(0, 109, 58, 0) 100%);
             }
         }
     }

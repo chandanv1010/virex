@@ -522,32 +522,72 @@ document.addEventListener('DOMContentLoaded', function() {
     @endif
 
     @php
-        $projectWidget = $widgets['featured-project'] ?? null;
-        $projectCat = (isset($projectWidget->object) && $projectWidget->object->isNotEmpty()) ? $projectWidget->object->first() : null;
-        $projectPosts = $projectCat ? $projectCat->posts : collect();
+        $projectKeyword = App\Enums\SlideEnum::PROJECT;
+        $projectSlideItems = $slides[$projectKeyword]['item'] ?? [];
     @endphp
 
-    @if($projectCat && $projectPosts->isNotEmpty())
+    @if(!empty($projectSlideItems))
     <div class="panel-featured-projects">
         <div class="project-header wow fadeInUp" data-wow-delay="0.1s">
-            <h2 class="title">{{ $projectCat->languages->name }}</h2>
+            <h2 class="title">DỰ ÁN TIÊU BIỂU</h2>
         </div>
-        <div class="project-grid wow fadeInUp" data-wow-delay="0.2s">
-            @foreach($projectPosts->take(4) as $post)
-                @php
-                    $lang = $post->languages->first();
-                @endphp
-                <div class="project-column">
-                    <a href="{{ write_url($lang->canonical) }}" class="project-card-virex">
-                        <img src="{{ $post->image }}" alt="{{ $lang->name }}">
-                        <div class="project-title-overlay">
-                            <h3 class="project-name">{{ $lang->name }}</h3>
+        <div class="project-slider-wrapper wow fadeInUp" data-wow-delay="0.2s">
+            <div class="swiper-container project-swiper">
+                <div class="swiper-wrapper">
+                    @foreach($projectSlideItems as $item)
+                        @php
+                            $imgSrc = $item['image'] ?? '';
+                            $imgAlt = $item['alt'] ?? ($item['name'] ?? 'Dự án VIREX');
+                        @endphp
+                        <div class="swiper-slide project-slide-item">
+                            <a href="{{ $imgSrc }}" data-uk-lightbox="{group:'featured-projects'}" title="{{ $imgAlt }}" class="project-card-virex">
+                                <img src="{{ $imgSrc }}" alt="{{ $imgAlt }}">
+                            </a>
                         </div>
-                    </a>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
+            <!-- Stylized Navigation Arrows -->
+            <button type="button" class="project-nav-btn project-prev" aria-label="Dự án trước">
+                <svg viewBox="0 0 24 24" class="nav-icon"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+            </button>
+            <button type="button" class="project-nav-btn project-next" aria-label="Dự án tiếp">
+                <svg viewBox="0 0 24 24" class="nav-icon"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+            </button>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var projectEl = document.querySelector('.project-swiper');
+            if (projectEl) {
+                if (projectEl.swiper) {
+                    try { projectEl.swiper.destroy(true, true); } catch (e) {}
+                }
+                var projectSwiper = new Swiper('.project-swiper', {
+                    slidesPerView: 6,
+                    slidesPerGroup: 1,
+                    spaceBetween: 0,
+                    loop: true,
+                    autoplay: {
+                        delay: 3500,
+                        disableOnInteraction: false,
+                    },
+                    navigation: {
+                        nextEl: '.project-next',
+                        prevEl: '.project-prev',
+                    },
+                    breakpoints: {
+                        320: { slidesPerView: 2 },
+                        480: { slidesPerView: 3 },
+                        768: { slidesPerView: 4 },
+                        1024: { slidesPerView: 6 },
+                        1280: { slidesPerView: 6 }
+                    }
+                });
+            }
+        });
+    </script>
     @endif
 
     @php

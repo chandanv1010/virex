@@ -228,3 +228,89 @@
     });
 </script>
 
+@php
+    $rawPhone = $system['contact_hotline'] ?? ($system['contact_phone'] ?? '0963892881');
+    $zaloPhone = preg_replace('/[^0-9]/', '', $rawPhone);
+    $zaloUrl = !empty($zaloPhone) ? 'https://zalo.me/' . $zaloPhone : ($system['social_zalo'] ?? 'https://zalo.me/');
+    $fbUrl = $system['contact_facebook'] ?? ($system['social_facebook'] ?? '#');
+@endphp
+
+<!-- Fixed Floating Zalo & Facebook Contact Buttons -->
+<div class="fixed-floating-contacts">
+    <a href="{{ $zaloUrl }}" target="_blank" class="floating-btn btn-zalo-float" title="Chat qua Zalo">
+        <svg viewBox="0 0 24 24" class="zalo-svg">
+            <path fill="#ffffff" d="M12.002 2C6.5 2 2 5.86 2 10.63c0 2.92 1.68 5.53 4.27 7.02-.12.48-.77 2.92-.85 3.25-.1.38.09.37.38.18.27-.17 2.43-1.62 3.37-2.26.9.23 1.86.36 2.83.36 5.5 0 10-3.86 10-8.63C22 5.86 17.5 2 12.002 2zm3.83 11.25c0 .41-.34.75-.75.75H9.67c-.55 0-.85-.63-.51-1.07l2.89-3.68H9.72c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h4.94c.55 0 .85.63.51 1.07l-2.89 3.68h3.25c.41 0 .75.34.75.75z"/>
+        </svg>
+    </a>
+    <a href="{{ $fbUrl }}" target="_blank" class="floating-btn btn-fb-float" title="Fanpage Facebook">
+        <i class="fa fa-facebook"></i>
+    </a>
+</div>
+
+<style>
+.fixed-floating-contacts {
+    position: fixed;
+    right: 18px;
+    bottom: 80px;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.fixed-floating-contacts .floating-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.fixed-floating-contacts .floating-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+.fixed-floating-contacts .btn-zalo-float {
+    background-color: #0068ff;
+    animation: pulseZalo 2s infinite;
+}
+.fixed-floating-contacts .btn-zalo-float .zalo-svg {
+    width: 25px;
+    height: 25px;
+}
+.fixed-floating-contacts .btn-fb-float {
+    background-color: #1877f2;
+    color: #ffffff;
+    animation: pulseFb 2s infinite 1s;
+}
+.fixed-floating-contacts .btn-fb-float i {
+    font-size: 22px;
+    color: #ffffff;
+}
+
+@keyframes pulseZalo {
+    0% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0.6); }
+    70% { box-shadow: 0 0 0 12px rgba(0, 104, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0); }
+}
+
+@keyframes pulseFb {
+    0% { box-shadow: 0 0 0 0 rgba(24, 119, 242, 0.6); }
+    70% { box-shadow: 0 0 0 12px rgba(24, 119, 242, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(24, 119, 242, 0); }
+}
+
+@media (max-width: 767px) {
+    .fixed-floating-contacts {
+        right: 12px;
+        bottom: 70px;
+    }
+    .fixed-floating-contacts .floating-btn {
+        width: 44px;
+        height: 44px;
+    }
+}
+</style>
+

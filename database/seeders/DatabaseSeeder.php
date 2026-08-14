@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CategoryAndMenuSeeder::class,
             ShanghaiZhsuProductSeeder::class,
             HomepageVideoSeeder::class,
+            ProjectSlideSeeder::class,
         ]);
     }
 }

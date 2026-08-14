@@ -37,10 +37,10 @@
 
         <div class="uk-container uk-container-center uk-container uk-margin-large-top">
             <div class="prd-catalogue-wrapper">
-                @if($hasSubCategories)
+                @if($hasSubCategories && ($productCatalogue->level == 1 || $productCatalogue->parent_id == 0))
                     <div class="prd-catalogue">
                         <div class="subcategory-grid-wrapper">
-                            <ul class="uk-list uk-clearfix uk-grid uk-grid-medium uk-grid-width-1-1 uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-3" data-uk-grid-margin>
+                            <ul class="uk-list uk-clearfix uk-grid uk-grid-medium uk-grid-width-1-1 uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4" data-uk-grid-margin>
                                 @foreach ($subCategories as $subCat)
                                     @php
                                         $name = $subCat->languages->first()->pivot->name ?? $subCat->name;
@@ -65,6 +65,60 @@
                             </ul>
                         </div>
                     </div>
+                @elseif($hasSubCategories && ($productCatalogue->level >= 2 || $productCatalogue->parent_id > 0))
+                    <div class="prd-catalogue">
+                        <div class="cat-group-wrapper">
+                            @foreach ($subCategories as $subCat)
+                                @php
+                                    $catName = $subCat->languages->first()->pivot->name ?? $subCat->name;
+                                    $catCanonical = write_url($subCat->languages->first()->pivot->canonical ?? $subCat->canonical);
+                                    $catProducts = $subCat->products ?? collect();
+                                @endphp
+                                <div class="cat-group-section uk-margin-large-bottom">
+                                    <div class="cat-group-header uk-margin-bottom">
+                                        <h2 class="cat-group-title">
+                                            <a href="{{ $catCanonical }}">{{ $catName }}</a>
+                                        </h2>
+                                    </div>
+                                    @if($catProducts->count() > 0)
+                                        <div class="cat-group-products">
+                                            <ul class="uk-list uk-clearfix uk-grid uk-grid-medium uk-grid-width-1-1 uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4">
+                                                @foreach ($catProducts as $pItem)
+                                                    @php
+                                                        $pTitle = $pItem->languages->first()->pivot->name ?? $pItem->name;
+                                                        $pCanonical = write_url($pItem->languages->first()->pivot->canonical ?? $pItem->canonical);
+                                                        $pImage = $pItem->image;
+                                                    @endphp
+                                                    <li class="uk-margin-bottom">
+                                                        <div class="premium-product-card">
+                                                            <a href="{{ $pCanonical }}" class="card-image-link img-scaledown img-zoomin">
+                                                                <img src="{{ $pImage }}" alt="{{ $pTitle }}" class="card-image">
+                                                            </a>
+                                                            <div class="card-body-simple">
+                                                                <h3 class="card-title-simple">
+                                                                    <a href="{{ $pCanonical }}" title="{{ $pTitle }}">{{ $pTitle }}</a>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="uk-text-center uk-margin-top uk-margin-medium-bottom">
+                                            <a href="{{ $catCanonical }}" class="btn-view-all-cat">
+                                                <span>Xem tất cả</span>
+                                                <i class="uk-icon-chevron-right uk-margin-small-left"></i>
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div class="no-products uk-text-center uk-margin-bottom">
+                                            <p>Chưa có sản phẩm nào trong danh mục này.</p>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 @else
                     <div class="prd-catalogue">
                         <div class="prd-grid-header uk-flex uk-flex-middle uk-flex-space-between uk-margin-bottom">
@@ -82,7 +136,7 @@
 
                         <div class="product-list">
                             @if (!is_null($products) && count($products))
-                                <ul class="uk-list uk-clearfix uk-grid uk-grid-medium uk-grid-width-1-1 uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-3">
+                                <ul class="uk-list uk-clearfix uk-grid uk-grid-medium uk-grid-width-1-1 uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4">
                                     @foreach ($products as $keyPost => $valPost)
                                         @php
                                             $title = $valPost->languages->first()->pivot->name;

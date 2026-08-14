@@ -435,23 +435,19 @@
     }
 }
 
-/* Sticky Header styles for desktop */
-@media (min-width: 960px) {
-    .tazen-header.is-sticky {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        z-index: 9999 !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
-        animation: headerSlideDown 0.3s ease-out !important;
-    }
-    .tazen-header.is-sticky .header-top-bar {
-        display: none !important;
-    }
-    .mobile-menu-list .uk-parent > a::after {
-        display: none !important;
-    }
+/* Sticky Header styles for all screens */
+.tazen-header.is-sticky {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 99999 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    animation: headerSlideDown 0.3s ease-out !important;
+}
+.tazen-header.is-sticky .header-top-bar {
+    display: block !important;
+    padding: 5px 0 !important;
 }
 
 @keyframes dropdownFadeIn {

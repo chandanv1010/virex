@@ -53,6 +53,7 @@ class ProductCatalogueRepository extends BaseRepository
                 'product_catalogues.parent_id',
                 'product_catalogues.lft',
                 'product_catalogues.rgt',
+                'product_catalogues.level',
                 'product_catalogues.image',
                 'product_catalogues.icon',
                 'product_catalogues.album',
