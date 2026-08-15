@@ -24,6 +24,17 @@
 @import "../vendor/frontend/core/plugins/jquery-nice-select-1.1.0/css/nice-select.css";
 @import "../vendor/frontend/resources/config.css";
 
+/* Enhanced Image Sharpness for Product Images */
+.product-card img,
+.subcategory-card img,
+.product-item img,
+.panel-product img,
+.product-image img,
+.uk-card img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
 // ================
