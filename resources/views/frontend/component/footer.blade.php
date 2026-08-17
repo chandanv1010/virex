@@ -95,8 +95,8 @@
                         <ul class="contact-details uk-list">
                             <li class="address">- Địa chỉ: Thôn Phúc Lộc, Xã Đông Anh, Thành phố Hà Nội, Việt Nam</li>
                             <li class="warehouse">- Kho bãi: nhà máy Z153, Xã Thư Lâm, Thành phố Hà Nội, Việt Nam</li>
-                            <li class="phone">- Số điện thoại: 0828 27 6666</li>
-                            <li class="email">- Email: <a href="mailto:virexvn8386@gmail.com">virexvn8386@gmail.com</a></li>
+                            <li class="phone">- Số điện thoại: {{ $system['contact_hotline'] }}</li>
+                            <li class="email">- Email: <a href="mailto:{{ $system['contact_email'] }}">{{ $system['contact_email'] }}</a></li>
                             <li class="website">- Website: <a href="https://virex.vn/" target="_blank">https://virex.vn/</a></li>
                         </ul>
                     </div>
