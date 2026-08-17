@@ -31,8 +31,7 @@
 .panel-product img,
 .product-image img,
 .uk-card img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    image-rendering: auto;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
@@ -4351,10 +4350,6 @@ body.uk-offcanvas-page {
         &:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-
-            .image {
-                transform: scale(1.1);
-            }
         }
     }
 }

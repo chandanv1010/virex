@@ -59,7 +59,7 @@
 
                 <!-- Right Utility: Download Document -->
                 <div class="header-main-right uk-visible-large">
-                    <a href="{{ $system['homepage_download_link'] ?? '#' }}" class="btn-download-doc" target="_blank">
+                    <a href="{{ (!empty($system['homepage_download_link']) && $system['homepage_download_link'] !== '#') ? $system['homepage_download_link'] : 'https://drive.google.com/drive/folders/1L3QBdbX07S5V-7oEjO_NGWewu4L98fPo?usp=sharing' }}" class="btn-download-doc" target="_blank">
                         <i class="fa fa-download"></i> Tải tài liệu
                     </a>
                 </div>

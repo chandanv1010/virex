@@ -48,6 +48,11 @@
 </div>
 <div id="mobileCanvas" class="uk-offcanvas offcanvas" >
     <div class="uk-offcanvas-bar" >
+        <div style="padding: 15px 15px 5px 15px;">
+            <a href="{{ (!empty($system['homepage_download_link']) && $system['homepage_download_link'] !== '#') ? $system['homepage_download_link'] : 'https://drive.google.com/drive/folders/1L3QBdbX07S5V-7oEjO_NGWewu4L98fPo?usp=sharing' }}" class="btn-download-doc" target="_blank" style="display: block; text-align: center; padding: 10px 15px; background: #006D3A; color: #fff; border-radius: 4px; font-weight: 700; text-decoration: none;">
+                <i class="fa fa-download"></i> Tải tài liệu
+            </a>
+        </div>
         @if(isset($menu['mobile']))
 		<ul class="l1 uk-nav uk-nav-offcanvas uk-nav uk-nav-parent-icon" data-uk-nav>
 			@foreach ($menu['mobile'] as $key => $val)
