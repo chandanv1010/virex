@@ -193,6 +193,11 @@
             overflow: hidden;
             text-decoration: none;
 
+            @media (max-width: 640px) {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
             .card-image {
                 width: 100%;
                 aspect-ratio: 301 / 425;
